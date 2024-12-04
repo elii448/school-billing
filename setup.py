@@ -11,7 +11,7 @@ script_path = os.path.join("src", "main.py")
 executables = [
     Executable(
         script_path,
-        base="Win32GUI",
+        base="Win64GUI",
         target_name="Billing.exe",
         icon=os.path.join("resources", "favicon.ico")
     )
