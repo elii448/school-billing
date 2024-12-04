@@ -32,9 +32,10 @@ jobs:
       run: |
         mkdir -p build
 
-    - name: Open poetry virtual environment
+    - name: Activate Poetry Environment
+      shell: cmd
       run: |
-        python -m poetry shell
+        call "$(poetry env info --path)\\Scripts\\activate.bat"
 
     - name: Build Executable
       run: |
