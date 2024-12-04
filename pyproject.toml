@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "school_billing"
+version = "0.1.0"
+description = ""
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+ruff = "^0.8.1"
+customtkinter = "^5.2.2"
+ctkmessagebox = "^2.7"
+ctktooltip = "^0.8"
+cx-freeze = "^7.2.7"
+
+[tool.poetry.scripts]
+start = "python -m src.main"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

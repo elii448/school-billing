@@ -1,0 +1,7 @@
+.ruff_cache/
+.ruff_cache/*
+poetry/
+poetry/*
+build/
+build/*
+**/__pycache__/

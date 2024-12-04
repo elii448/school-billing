@@ -1,0 +1,40 @@
+name: Build Executable
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.11
+
+    - name: Install Poetry
+      run: |
+        curl -sSL https://install.python-poetry.org | python3 -
+        echo "::add-path::${HOME}/.local/bin"
+
+    - name: Install dependencies
+      run: |
+        poetry install
+
+    - name: Prepare build folder
+      run: |
+        mkdir -p build
+
+    - name: Build Executable
+      run: |
+        python setup.py build
+
+    - name: Upload Build Artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: build-output
+        path: build/exe.*
