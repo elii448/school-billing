@@ -16,10 +16,6 @@ jobs:
       with:
         python-version: 3.11
 
-    - name: Install pip
-      run: |
-        python3 get-pip.py
-
     - name: Install Poetry
       run: |
         python3 -m pip install poetry
