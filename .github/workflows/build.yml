@@ -25,13 +25,16 @@ jobs:
       run: |
         poetry install
 
+    - name: Start poetry virtual environment
+      shell: bash
+      run: |
+        source $(poetry env info --path)/bin/activate
+        echo "$VIRTUAL_ENV/bin" >> $GITHUB_PATH
+        echo "PYTHONHOME=" >> $GITHUB_ENV
+
     - name: Prepare build folder
       run: |
         mkdir -p build
-
-    - name: Start poetry virtual environment
-      run: |
-        poetry/Scripts/activate.bat
 
     - name: Build Executable
       run: |
