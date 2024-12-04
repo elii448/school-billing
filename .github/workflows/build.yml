@@ -32,6 +32,10 @@ jobs:
       run: |
         mkdir -p build
 
+    - name: Open poetry virtual environment
+      run: |
+        python -m poetry shell
+
     - name: Build Executable
       run: |
         python setup.py build
