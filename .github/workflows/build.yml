@@ -5,7 +5,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-24.04
+    runs-on: windows-latest
 
     steps:
     - name: Checkout code
@@ -16,21 +16,21 @@ jobs:
       with:
         python-version: 3.11
 
+    - name: Install pip
+      run: |
+        python3 get-pip.py
+
     - name: Install Poetry
       run: |
-        curl -sSL https://install.python-poetry.org | python3 -
-        echo "${HOME}/.local/bin" >> $GITHUB_PATH
+        python3 -m pip install poetry
+
+    - name: Verify Poetry installation
+      run: |
+        python3 -m poetry --version
 
     - name: Install dependencies
       run: |
-        poetry install
-
-    - name: Start poetry virtual environment
-      shell: bash
-      run: |
-        source $(poetry env info --path)/bin/activate
-        echo "$VIRTUAL_ENV/bin" >> $GITHUB_PATH
-        echo "PYTHONHOME=" >> $GITHUB_ENV
+        python3 -m poetry install
 
     - name: Prepare build folder
       run: |
