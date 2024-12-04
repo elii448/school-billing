@@ -19,18 +19,16 @@ jobs:
     - name: Install Poetry
       run: |
         curl -sSL https://install.python-poetry.org | python3 -
-        echo "${HOME}/.local/bin" >> $GITHUB_PATH
+        # Ensure Poetry is in the PATH for Windows
+        echo "$env:USERPROFILE\\.local\\bin" >> $env:GITHUB_PATH
+
+    - name: Verify Poetry installation
+      run: |
+        poetry --version
 
     - name: Install dependencies
       run: |
         poetry install
-
-    - name: Start poetry virtual environment
-      shell: bash
-      run: |
-        source $(poetry env info --path)/bin/activate
-        echo "$VIRTUAL_ENV/bin" >> $GITHUB_PATH
-        echo "PYTHONHOME=" >> $GITHUB_ENV
 
     - name: Prepare build folder
       run: |
