@@ -32,6 +32,10 @@ jobs:
       run: |
         mkdir -p build
 
+    - name: Print Poetry Environment Path
+      run: |
+        echo $(poetry env info --path)
+
     - name: Activate Poetry Environment
       shell: cmd
       run: |
