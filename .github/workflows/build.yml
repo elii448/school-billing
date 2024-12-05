@@ -36,6 +36,10 @@ jobs:
       run: |
         python3 -m pip install cx_Freeze
 
+    - name: Install cx_Freeze
+      run: |
+        python3 -m pip install customtkinter
+
     - name: Build Executable
       shell: cmd
       run: |
