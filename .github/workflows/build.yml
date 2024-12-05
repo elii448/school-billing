@@ -53,7 +53,7 @@ jobs:
 
     - name: Update README with artifact link
       run: |
-        ARTIFACT_URL="https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts"
+        $artifact_url="https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts"
         echo "Artifact URL: $ARTIFACT_URL"
         sed -i "s|<artifact_download_link>|$ARTIFACT_URL|g" README.md
 
