@@ -7,7 +7,7 @@ jobs:
   build-windows:
     strategy:
       matrix:
-        os: [ "ubuntu-latest", "macos-latest", "windows-latest" ]
+        os: [ "windows-latest" ]
     defaults:
       run:
         shell: bash
