@@ -24,7 +24,7 @@ setup(
     description="Initial Billing App",
     options={
         "build_exe": {
-            "packages": ["Tkinter"],
+            "packages": ["tkinter"],
             "include_files": files,
         }
     },
