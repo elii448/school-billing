@@ -31,22 +31,20 @@ jobs:
         path: .venv
         key: venv-${{ runner.os }}-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
 
-    - name: Prepare build folder
-      run: |
-        mkdir -p build
-
     - name: Install dependencies
       if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
       run: |
         "$(python3 -m poetry env info --path)\\Scripts\\activate.bat"
-        poetry install
+        python3 -m poetry install
 
     - name: Install cx_Freeze
       run: |
         "$(python3 -m poetry env info --path)\\Scripts\\activate.bat"
         python setup.py build
 
-
+    - name: Prepare build folder
+      run: |
+        mkdir -p build
 
     # - name: Install cx_Freeze
     #   run: |
