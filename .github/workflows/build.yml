@@ -64,16 +64,17 @@ jobs:
       #     python setup.py build
 
       - name: Upload Build Artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
+        id: artifact-upload-step
         with:
           name: build-output
           path: build/exe.*
 
       - name: Update README with artifact link
         run: |
-          $artifact_url="https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts"
-          echo "Artifact URL: $ARTIFACT_URL"
-          sed -i "s|<artifact_download_link>|$ARTIFACT_URL|g" README.md
+          $artifact_url="${{ steps.artifact-upload-step.outputs.artifact-url }}"
+          echo "Artifact URL: $artifact_url"
+          sed -i "s|<artifact_download_link>|$artifact_url|g" README.md
 
       - name: Commit and push changes to README
         run: |

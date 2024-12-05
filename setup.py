@@ -1,6 +1,10 @@
 from cx_Freeze import setup, Executable
 import os
 
+def run_build():
+    import subprocess
+    subprocess.run(["python", "setup.py", "build"], check=True)
+
 files = [
     os.path.join("resources", "favicon.ico")
 ]

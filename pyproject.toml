@@ -14,7 +14,7 @@ ctktooltip = "^0.8"
 cx-freeze = "^7.2.7"
 
 [tool.poetry.scripts]
-start = "python -m src.main"
+build-exe = "setup:run_build"
 
 [build-system]
 requires = ["poetry-core"]
