@@ -35,7 +35,7 @@ jobs:
     - name: Activate Poetry Environment
       shell: cmd
       run: |
-        call "$(poetry env info --path)\\Scripts\\activate.bat"
+        call "$(python3 -m poetry env info --path)\\Scripts\\activate.bat"
 
     - name: Build Executable
       shell: cmd
