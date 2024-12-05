@@ -32,6 +32,10 @@ jobs:
       run: |
         python3 -m poetry install
 
+    - name: Install cx_Freeze
+      run: |
+        python3 -m pip install cx_Freeze
+
     - name: Build Executable
       shell: cmd
       run: |
