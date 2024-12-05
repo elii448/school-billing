@@ -50,3 +50,29 @@ jobs:
       with:
         name: build-output
         path: build/exe.*
+
+    - name: Get Artifact ID and Run ID
+      id: get_artifact
+      run: |
+        ARTIFACT_ID=$(curl -s \
+          -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+          "https://api.github.com/repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts" \
+          | jq -r '.artifacts[0].id')
+        echo "Artifact ID: $ARTIFACT_ID"
+        echo "Run ID: ${{ github.run_id }}"
+        echo "::set-output name=artifact_id::$ARTIFACT_ID"
+        echo "::set-output name=run_id::${{ github.run_id }}"
+
+    - name: Update README with artifact link
+      run: |
+        ARTIFACT_URL="https://github.com/${{ github.repository }}/actions/runs/${{ steps.get_artifact.outputs.run_id }}/artifacts/${{ steps.get_artifact.outputs.artifact_id }}"
+        echo "Artifact URL: $ARTIFACT_URL"
+        sed -i "s|<artifact_download_link>|$ARTIFACT_URL|g" README.md
+
+    - name: Commit and push changes to README
+      run: |
+        git config --global user.name "GitHub Actions"
+        git config --global user.email "actions@github.com"
+        git add README.md
+        git commit -m "Update README with artifact download link"
+        git push
