@@ -20,26 +20,17 @@ jobs:
       run: |
         python3 -m pip install poetry
 
-    - name: Verify Poetry installation
-      run: |
-        python3 -m poetry --version
-
-    - name: Install dependencies
-      run: |
-        python3 -m poetry install
-
     - name: Prepare build folder
       run: |
         mkdir -p build
 
-    - name: Print Poetry Environment Path
+    - name: Open Poetry shell
       run: |
-        echo $(poetry env info --path)
+        python3 -m poetry shell
 
-    - name: Activate Poetry Environment
-      shell: cmd
+    - name: Install dependencies
       run: |
-        call "$(python3 -m poetry env info --path)\\Scripts\\activate.bat"
+        python3 -m poetry install
 
     - name: Build Executable
       shell: cmd
