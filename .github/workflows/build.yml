@@ -43,7 +43,7 @@ jobs:
 
       - name: Install cx_Freeze
         run: |
-          "$(python3 -m poetry env info --path)\\Scripts\\activate.bat"
+          source $VENV
           python setup.py build
 
       - name: Prepare build folder

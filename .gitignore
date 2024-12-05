@@ -2,6 +2,8 @@
 .ruff_cache/*
 poetry/
 poetry/*
+.venv/
+.venv/*
 build/
 build/*
 **/__pycache__/
