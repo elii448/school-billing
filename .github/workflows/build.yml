@@ -73,8 +73,7 @@ jobs:
       - name: Update README with artifact link
         run: |
           $artifact_url="${{ steps.artifact-upload-step.outputs.artifact-url }}"
-          echo "Artifact URL: $artifact_url"
-          sed -i "s|<artifact_download_link>|$artifact_url|g" README.md
+          echo "Artifact URL: $artifact_url" > README.md
 
       - name: Commit and push changes to README
         run: |
