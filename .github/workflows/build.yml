@@ -46,23 +46,6 @@ jobs:
           source $VENV
           python setup.py build
 
-      - name: Prepare build folder
-        run: |
-          mkdir -p build
-
-      # - name: Install cx_Freeze
-      #   run: |
-      #     python3 -m pip install cx_Freeze
-
-      # - name: Install customtkinter
-      #   run: |
-      #     python3 -m pip install customtkinter
-
-      # - name: Build Executable
-      #   shell: cmd
-      #   run: |
-      #     python setup.py build
-
       - name: Upload Build Artifacts
         uses: actions/upload-artifact@v4
         id: artifact-upload-step
@@ -70,15 +53,15 @@ jobs:
           name: build-output
           path: build/exe.*
 
-      - name: Update README with artifact link
-        run: |
-          $artifact_url="${{ steps.artifact-upload-step.outputs.artifact-url }}"
-          echo "Artifact URL: $artifact_url" > README.md
+      # - name: Update README with artifact link
+      #   run: |
+      #     $artifact_url="${{ steps.artifact-upload-step.outputs.artifact-url }}"
+      #     echo "Artifact URL: $artifact_url" > README.md
 
-      - name: Commit and push changes to README
-        run: |
-          git config --global user.name "GitHub Actions"
-          git config --global user.email "actions@github.com"
-          git add README.md
-          git commit -m "Update README with artifact download link"
-          git push
+      # - name: Commit and push changes to README
+      #   run: |
+      #     git config --global user.name "GitHub Actions"
+      #     git config --global user.email "actions@github.com"
+      #     git add README.md
+      #     git commit -m "Update README with artifact download link"
+      #     git push
