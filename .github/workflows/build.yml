@@ -38,6 +38,7 @@ jobs:
     - name: Install dependencies
       if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
       run: |
+        $(python3 -m poetry env info --path)/Scripts/activate.bat
         poetry install
 
     - name: Install cx_Freeze
