@@ -38,6 +38,7 @@ jobs:
         call "$(poetry env info --path)\\Scripts\\activate.bat"
 
     - name: Build Executable
+      shell: cmd
       run: |
         python setup.py build
 
